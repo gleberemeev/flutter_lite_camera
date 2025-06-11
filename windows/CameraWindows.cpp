@@ -201,6 +201,11 @@ void Camera::Release()
         ComPtr<IMFSourceReader> mfReader(static_cast<IMFSourceReader *>(reader));
         reader = nullptr;
     }
+    if (initialized)
+    {
+        MFShutdown();
+        initialized = false;
+    }
 }
 
 std::vector<MediaTypeInfo> Camera::ListSupportedMediaTypes()
